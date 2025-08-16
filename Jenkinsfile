@@ -4,11 +4,15 @@ pipeline {
 
     stages {
         stage('Start Grid') {
-            sh "docker-compose -f grid.yaml up -d"
+            steps {
+                sh "docker-compose -f grid.yaml up -d"
+            }
         }
 
         stage('Start Tests') {
-            sh "docker-compose -f test-suites.yaml up"
+            steps {
+                sh "docker-compose -f test-suites.yaml up"
+            }
         }
     }
 
