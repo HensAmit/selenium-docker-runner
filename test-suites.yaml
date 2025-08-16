@@ -3,18 +3,18 @@ services:
   vendor-portal:
     image: hensamit/selenium
     environment:
-      - BROWSER=chrome
+      - BROWSER=${BROWSER}
       - HUB_HOST=hub
-      - THREAD_COUNT=4
+      - THREAD_COUNT={THREAD_COUNT}
       - TEST_SUITE=vendor-portal.xml
     volumes:
       - ./output/vendor-portal:/home/selenium-docker/test-output
   flight-reservation:
     image: hensamit/selenium
     environment:
-      - BROWSER=firefox
+      - BROWSER=${BROWSER}
       - HUB_HOST=hub
-      - THREAD_COUNT=4
+      - THREAD_COUNT={THREAD_COUNT}
       - TEST_SUITE=flight-reservation.xml
     volumes:
       - ./output/flight-reservation:/home/selenium-docker/test-output

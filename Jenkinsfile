@@ -2,10 +2,15 @@ pipeline {
 
     agent any
 
+    parameters {
+      choice choices: ['chrome', 'firefox'], description: 'Select the browser', name: 'BROWSER'
+      string defaultValue: '1', description: 'Enter thread count', name: 'THREAD_COUNT', trim: true
+    }
+
     stages {
         stage('Start Grid') {
             steps {
-                sh "docker-compose -f grid.yaml up -d"
+                sh "docker-compose -f grid.yaml up --scale ${params.BROWSER}=${params.THREAD_COUNT} -d"
             }
         }
 
