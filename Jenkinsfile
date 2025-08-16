@@ -16,7 +16,7 @@ pipeline {
 
         stage('Start Tests') {
             steps {
-                sh "docker-compose -f test-suites.yaml up"
+                sh "docker-compose -f test-suites.yaml up --pull=always"
                 script {
                     if(fileExists('output/flight-reservation/testng-failed.xml') || fileExists('output/vendor-portal/testng-failed.xml')) {
                         error('Tests failed')
